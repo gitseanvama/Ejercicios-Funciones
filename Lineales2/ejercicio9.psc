@@ -1,56 +1,52 @@
-Algoritmo ejercicio9
-	Definir diaA, mesA, anioA, edad Como Entero
-	Definir mensaje Como Cadena
+Proceso Ejercicio9
+    // Variables globales
+    Definir diaA, mesA, anioA Como Entero
+    Definir dia1, mes1, anio1, edad1 Como Entero
+    Definir dia2, mes2, anio2, edad2 Como Entero
+    Definir dia3, mes3, anio3, edad3 Como Entero
 	
-	// Fecha actual (puedes modificarla seg�n necesites)
-	diaA <- 2
-	mesA <- 9
-	anioA <- 2025
+    // Pedir fecha actual
+    Escribir "Ingrese la fecha actual:"
+    Escribir "Día: " Sin Saltar; Leer diaA
+    Escribir "Mes: " Sin Saltar; Leer mesA
+    Escribir "Año: " Sin Saltar; Leer anioA
 	
-	Para i <- 1 Hasta 3 Con Paso 1 Hacer
-		edad <- CalcularEdad(i, diaA, mesA, anioA)
-		mensaje <- Procesar(i, edad)
-		Mostrardato(mensaje)
-	FinPara
-FinAlgoritmo
+    // Persona 1
+    PedirDatos(dia1, mes1, anio1, 1)
+    edad1 <- ProcesarEdad(dia1, mes1, anio1, diaA, mesA, anioA)
+	
+    // Persona 2
+    PedirDatos(dia2, mes2, anio2, 2)
+    edad2 <- ProcesarEdad(dia2, mes2, anio2, diaA, mesA, anioA)
+	
+    // Persona 3
+    PedirDatos(dia3, mes3, anio3, 3)
+    edad3 <- ProcesarEdad(dia3, mes3, anio3, diaA, mesA, anioA)
+	
+    // Mostrar resultados
+    MostrarDatos(edad1, edad2, edad3)
+FinProceso
 
+// -------------------- FUNCIONES --------------------
 
-Funcion e <- CalcularEdad(i, diaA, mesA, anioA)
-	Definir e, diaN, mesN, anioN Como Entero
-	
-	// Fechas de nacimiento predefinidas
-	Si i = 1 Entonces
-		diaN <- 10
-		mesN <- 5
-		anioN <- 1997
-	FinSi
-	
-	Si i = 2 Entonces
-		diaN <- 23
-		mesN <- 11
-		anioN <- 2000
-	FinSi
-	
-	Si i = 3 Entonces
-		diaN <- 15
-		mesN <- 2
-		anioN <- 1990
-	FinSi
-	
-	// C�lculo de la edad
-	e <- anioA - anioN
-	Si (mesA < mesN) O (mesA = mesN Y diaA < diaN) Entonces
-		e <- e - 1
-	FinSi
+SubProceso PedirDatos(dia Por Referencia, mes Por Referencia, anio Por Referencia, persona)
+    Escribir "Ingrese fecha de nacimiento de la Persona ", persona, ":"
+    Escribir "Día: " Sin Saltar; Leer dia
+    Escribir "Mes: " Sin Saltar; Leer mes
+    Escribir "Año: " Sin Saltar; Leer anio
+FinSubProceso
+
+Funcion edad <- ProcesarEdad(diaN, mesN, anioN, diaA, mesA, anioA)
+    edad <- anioA - anioN
+    Si (mesA < mesN) O (mesA = mesN Y diaA < diaN) Entonces
+        edad <- edad - 1
+    FinSi
 FinFuncion
 
-
-Funcion m <- Procesar(i, e)
-	Definir m Como Cadena
-	m <- "La edad de la persona " + ConvertirATexto(i) + " es: " + ConvertirATexto(e) + " a�os"
-FinFuncion
-
-
-Funcion Mostrardato(m)
-	Escribir m
-FinFuncion
+SubProceso MostrarDatos(edad1, edad2, edad3)
+    Escribir "--------------------------------"
+    Escribir "La edad de la Persona 1 es: ", edad1, " años."
+    Escribir "La edad de la Persona 2 es: ", edad2, " años."
+    Escribir "La edad de la Persona 3 es: ", edad3, " años."
+    Escribir "--------------------------------"
+FinSubProceso
